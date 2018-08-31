@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+     <script src="/static/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<style>
+      html{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+<form action="/tyniadd/" method="post">
+
+    大分类：
+    <select name="bigtyid" id="">
+    {% for item in big %}
+            <option value="{{ item.bigtyid }}">{{item.bigtyname}}</option>
+    {% endfor %}
+    </select><br>
+
+    <!--<input type="text" name="id" value="{{ item.id }}">-->
+    类型标识：<input type="text" name="tyniid"><br>
+    类型名称：<input type="text" name="tyniname" ><br>
+    <input type="submit" value="添加"  class="btn btn-primary">
+</form>
+</body>
+<script>
+$().ready(function() {
+  // },"验证码不一致")
+// 在键盘按下并释放及提交后验证提交表单
+  $("form").validate({
+    rules: {
+      tyniid: {
+        required: true,
+          remote:"/ajax_tyniid/",
+
+      },
+     tyniname: {
+        required: true,
+            remote:"/ajax_tyniname/",
+
+      }
+    },
+    messages: {
+      tyniid: {
+        required: "请输入id",
+         remote:"id已存在",
+      },
+      tyniname: {
+        required: "请输入名字",
+        remote:"类型已存在"
+      }
+     }
+    })
+});
+
+</script>
+</html>

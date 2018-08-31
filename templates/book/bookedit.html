@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+<form action="/bookedit/" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="bookid" value="{{data.bookid}}">
+    大分类
+    <select name="bigtyid" >
+        <option value="0">请选择大分类</option>
+        {% for item in  big %}
+            {% if item.bigtyid == data.bigtyid %}
+            <option value="{{item.bigtyid}}" selected>{{item.bigtyname}}</option>
+        {% else %}
+            <option value="{{item.bigtyid}}">{{item.bigtyname}}</option>
+        {% endif %}
+        {% endfor %}
+    </select><br>
+    小分类:
+    <select name="tyniid">
+         <option value="0">请选择小分类</option>
+        {% for item in  tyni %}
+            {% if item.tyniid == data.tyniid %}
+            <option value="{{item.tyniid}}" selected>{{item.tyniname}}</option>
+        {% else %}
+             <option value="{{item.tyniid}}">{{item.tyniname}}</option>
+            {% endif %}
+        {% endfor %}
+    </select><br>
+    书名：<input type="text" placeholder="请输入书名" name="bookname" value="{{data.bookname}}"><br>
+    作者：<input type="text" placeholder="请输入书名" name="author" value="{{data.author}}"><br><br>
+    简介： <textarea rows="5" cols="30" maxlength="100" style="resize: none" name="introinfo" >{{data.introinfo}}</textarea><br>
+    图片:
+    <input type="file" name="img"><br>
+    原先图片：<img src="../{{data.bookimg}}" alt="" style="width: 100px;height: 100px;"><br><br>
+    标志：
+        {% for item in flag %}
+            {% if item.flagid == data.flagid %}
+                 <input type="checkbox" name="flagid" value="{{item.flagid}}" checked>{{item.flagname}}
+            {% else %}
+                <input type="checkbox" name="flagid" value="{{item.flagid}}" >{{item.flagname}}
+            {% endif %}
+        {% endfor %}
+    <input type="submit" value="提交"  class="btn btn-primary"><br>
+</form>
+</body>
+<script>
+    $("select[name=bigtyid]").change(function(){
+        var val=$(this).select().val()
+        $.ajax({
+            url:"/ajax_tyni/",
+            dataType:"json",
+            data:{"bigtyid":val},
+            success(data){
+                var str1 = ""
+                for(var i =0;i<data.length;i++){
+                    str1+="<option value="+data[i].tyniid+">"+data[i].tyniname+"</option>"
+                }
+                console.log(str1)
+                $("select[name=tyniid]").html(str1)
+            }
+        })
+    })
+//     $().ready(function() {
+//   // },"验证码不一致")
+// // 在键盘按下并释放及提交后验证提交表单
+//   $("form").validate({
+//     rules: {
+//       bigtyid: {
+//         required: true,
+//       },
+//       bookname: {
+//         required: true,
+//         remote:"/ajax_bookname1/",
+//       },
+//        tyniid: {
+//         required: true,
+//       },
+//         author: {
+//         required: true,
+//       },
+//        introinfo: {
+//         required: true,
+//            minlength:10,
+//       },
+//
+//     },
+//     messages: {
+//       bigtyid: {
+//         required: "请选择大分类",
+//       },
+//         tyniid: {
+//         required: "请选择小分类",
+//       },
+//       bookname:{
+//         required: "请填写书名",
+//         remote:"书名已存在",
+//       },
+//         author: {
+//         required: "请输入作者",
+//       },
+//         introinfo: {
+//         required: "请输入图书信息",
+//         minlength:"介绍小于10个字。",
+//       },
+//
+//      }
+//     })
+// });
+
+</script>
+</html>

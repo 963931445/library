@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+     <script src="/static/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+      html{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+<form action="/tyniedit/" method="post">
+
+    大分类：
+    <select name="bigtyid" id="">
+    {% for item in big %}
+        {% if item.bigtyid == data.bigtyid %}
+            <option value="{{ item.bigtyid }}" selected>{{item.bigtyname}}</option>
+        {% else %}
+         <option value="{{ item.bigtyid }}">{{item.bigtyname}}</option>
+        {% endif %}
+    {% endfor %}
+    </select><br>
+    <input type="text" name="id" value="{{ data.id }}">
+    类型标识：<input type="text" name="tyniid" value="{{data.tyniid}}"><br>
+    类型名称：<input type="text" name="tyniname" value="{{data.tyniname}}"><br>
+    <input type="submit" value="提交"  class="btn btn-primary">
+</form>
+</body>
+<script>
+     $().ready(function() {
+
+  // },"验证码不一致")
+// 在键盘按下并释放及提交后验证提交表单
+  $("form").validate({
+    rules: {
+      tyniid: {
+        required: true,
+      },
+        tyniname: {
+        required: true,
+
+      },
+    },
+    messages: {
+      tyniid: {
+        required: "请输入标识",
+
+      },
+        tyniname: {
+        required: "请输入名字",
+      },
+     }
+    })
+});
+
+</script>
+</html>

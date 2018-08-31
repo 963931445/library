@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <script src="/static/js/jquery.js"></script>
+    <!--<script src="/static/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    a{
+        list-style: none;
+    }
+    .add{
+        width: 200px;
+        /*background: red;*/
+        margin-bottom: 10px;
+        line-height: 50px;
+    }
+    .add img{
+        width: 30px;
+        height:30px;
+    }
+    .add span{
+        margin-left: 5px;
+    }
+    td[name=bookimg]{
+        position: relative;
+    }
+    td[id=oper]{
+        position: relative;
+    }
+    /*#oper #bigimg{*/
+        /*position: absolute;*/
+        /*top:-5px;*/
+        /*right:-50px;*/
+    /*}*/
+    td[name=introinfo] div{
+         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*display: block;*/
+        /*min-width: 30px;*/
+        max-width: 100px;
+        max-height: 20px;
+    }
+          ul.pagination {
+    /*width: auto;*/
+    position: absolute;
+    left:30em;right:0;
+    margin:0 auto;
+    bottom:0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #4CAF50;}
+</style>
+<body>
+<div class="add"><a href="/bookadd/"><img src="/static/image/png/add.png" alt=""><span>图书添加</span></a></div>
+{% if data %}
+    <table class="table table-striped">
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>所属大分类</th>
+            <th>作所属小分类</th>
+            <th>简介</th>
+            <th>封面</th>
+            <th>操作</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <td name="bookname">{{ item.bookname}}</td>
+                <td name="author">{{ item.author }}</td>
+                <td name="bigtyid">{{ item.bigtyname}}</td>
+                <td name="tyniid">{{ item.tyniname }}</td>
+                <td name="introinfo"><div class="">{{item.introinfo}}</div></td>
+                <td name="bookimg"><img src="{{item.bookimg}}" style="width: 50px;height: 50px;" id="smallimg">
+                    </td>
+                <td id="oper">
+                    <!--<img src="../../{{item.bookimg}}" alt="" id="bigimg" style="width: 150px;height: 150px; " >-->
+                    <a href="/bookedit/?bookid={{item.bookid}}"><img src="../static/image/png/edit.png" alt="" style="width: 20px;"></a>
+                    <a href="/bookdel/?bookid={{item.bookid}}"><img src="../static/image/png/del.png" alt="" style="width: 20px;"></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+没有数据
+{% endif %}
+{{ page | safe}}
+</body>
+<script>
+    // $("table").on("mousemove",function(e){
+    //     if(e.target.nodeName=="smallimg"){
+    //         $(this).parent("tbody").find("#oper").find("#bigimg").css("display","block")
+    //     }else{
+    //         $(this).parent().find("#bigimg").css("display","none")
+    //     }
+    // })
+</script>
+</html>

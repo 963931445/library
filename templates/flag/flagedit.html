@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+     <script src="/static/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+html{
+    width: 100%;
+    height: 100%;
+    }
+</style>
+<body>
+<form action="/flagedit/" method="post">
+    <input type="hidden" name="id" value="{{ data.id }}">
+    标识符id：<input type="text" name="flagid" value="{{data.flagid}}"><br>
+    标识符名称：<input type="text" name="flagname" value="{{data.flagname}}"><br>
+    <input type="submit" value="提交"  class="btn btn-primary">
+</form>
+</body>
+<script>
+
+</script>
+</html>

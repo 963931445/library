@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/js/rem.js"></script>
+</head>
+<style>
+    *{
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+    position: relative;
+        box-sizing: border-box;
+
+}
+img{
+	display:block;
+}
+a{
+	text-decoration: none;
+}
+html{
+
+	font-size: 100px;
+}
+.main{
+
+     /*background: red;*/
+}
+.main .head{
+    margin-top: 0.2rem;
+    height: 0.44rem;
+    font-size: 0.2rem;
+    line-height: 0.44rem;
+    text-align: center;
+    /*font-weight: bold;*/
+}
+.main .logo{
+    width: 100%;
+    height: 1.5rem;
+    /*margin-top:0.64rem;*/
+    background: #ccc;
+
+}
+    .main .logo .cube{
+        width: 0.7rem;
+        height: 0.75rem;
+        border:0.03rem solid #A9A9A9;
+        background: #fff;
+        position: absolute;
+
+        left:0;
+        right:0;
+        margin:auto;
+        top:0.07rem;
+        border-radius: 0.2rem;
+
+    }
+    .main form{
+        display: block;
+        height: 2rem;
+        /*background: blue;*/
+        padding-left: 0.1rem;
+
+    }
+     .main form input[id=pass1],.main form input[id=pass2]{
+         display: block;
+         height: 0.6rem;
+         width: 5.3rem;
+         border:0;
+         border-bottom: 0.01rem solid #dedede;
+     }
+     .main form input[id=submit]{
+         width: 3.5rem;
+         height: 0.4rem;
+         background: #666666;
+         border:0;
+         border-radius:0.1rem ;
+         color:#fff;
+         padding:0;
+         margin-top: 0.3rem;
+         display: block;
+     }
+</style>
+<body>
+<div class="main">
+    <div class="head"><span>修改密码</span></div>
+    <div class="logo">
+        <div class="cube"></div>
+    </div>
+    <form action="">
+        <input type="text" placeholder="输入您的新密码" id="pass1">
+        <input type="text" placeholder="再次输入密码" id="pass2">
+        <input type="submit" id="submit" value="完成">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/static/js/jquery.js"></script>
+
+</head>
+<style>
+    body{
+        background-image: url("../static/image/index/bgf.png");
+        background-size: cover;
+        font-size:20px;
+        font-weight:600;
+    }
+    form{
+        width: 450px;
+        height: 300px;
+        position: fixed;
+        top:200px;
+        left:500px;
+    }
+    input{
+        width: 120px;
+        height: 20px;
+        margin:10px;
+    }
+    label{
+        width: 50px;
+        height: 20px;
+
+    }
+    input[type="submit"],input[type="button"]{
+        width: 80px;
+        height: 30px;
+        border:none;
+        border-radius: 3px;
+    }
+    #namenull,#passnull,#pass1null,#namepass{
+        display: none;
+        width: 60px;
+        height: 30px;
+        color:red;
+        font-size: 5px;
+        word-break: break-all;
+    }
+</style>
+<body>
+
+
+<form action="/regist/" method="post">
+    <h3> 用户注册</h3>
+    <label for="username">用&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名：</label><input type="text" id="username" name="name"><p id="namenull">*用户名不能为空</p><br>
+    <label for="pass">请输入密码：</label><input type="text" id="pass" name="pass"><p id="passnull">*密码不能为空</p><br>
+    <label for="pass1">请确认密码：</label><input type="text" id="pass1" name="pass1"><p id="pass1null">*输入密码不一致</p><br>
+    <p id="namepass" style="width:200px">* 用户名和密码不能为空</p>
+    <input type="button" value="清空" style="background: #4CAF50;margin-left:45px;" id="clear">
+    <input type="submit" value="注册" style="background:#f44336" id="reg1">
+</form>
+
+</body>
+<script>
+    var clear = document.getElementById("clear")
+    var username = document.getElementById("username")
+    var pass = document.getElementById("pass")
+    var pass1 = document.getElementById("pass1")
+    var reg = document.getElementById("reg1")
+    var namenull = document.getElementById("namenull")
+    var passnull = document.getElementById("passnull")
+    var pass1null = document.getElementById("pass1null")
+    var namepass = document.getElementById("namepass")
+    clear.onclick=function(){
+        username.value="";
+        pass.value="";
+        pass1.value=""
+    }
+    username.onfocus=function(){
+            namenull.style.display="none"
+            namepass.style.display="none"
+        }
+        pass.onfocus=function(){
+            passnull.style.display="none"
+            namepass.style.display="none"
+        }
+        pass1.onfocus=function(){
+            pass1null.style.display="none"
+            namepass.style.display="none"
+        }
+    reg.onclick=function(e){
+
+            if (username.value == "" && pass.value == "" && pass1.value==""){
+                namepass.style.display="block"
+                return false
+//                e.cancelBubble=true;
+//                e.stopPropagation();
+            }else if(username.value ==""){
+                namenull.style.display="inline"
+//                e.cancelBubble=true;
+                return false
+//                e.stopPropagation();
+            }else if(pass.value ==""){
+                console.log("12")
+                passnull.style.display="inline"
+//                e.cancelBubble=true;
+                 return false
+//                e.stopPropagation();
+            }else if(pass.value != pass1.value){
+                pass1null.style.display="inline"
+//                e.cancelBubble=true;
+//                e.stopPropagation();
+                    return false
+            }
+//            else{
+//                $.ajax({
+//                    type:"POST",
+//                    url:"regist",
+//                    dataType:"json",
+//                    data:{"name":username.value,"pass":pass.value,"pass1":pass1.value},
+////                    success:function(result){
+//////                             window.location.href='/login'
+//////                        $.ajax({url:"/login"})
+////                    }
+//                })
+//
+//
+//            }
+    }
+
+
+</script>
+</html>

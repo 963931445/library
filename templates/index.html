@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+   	<head>
+		<!--<link href="../static/css/style.css" rel='stylesheet' type='text/css' />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--//webfonts-->
+        <script src="/static/js/jquery.js"></script>
+        <!--<script src="/static/js/jquery.validate.min.js"></script>-->
+	</head>
+    <style>
+        *{
+            margin:0;padding:0;
+            /*position: relative;*/
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            list-style: none;
+            color:#fff;
+        }
+		.main .top{
+			width: 100%;
+			height: 90px;
+			background: #2B7EFF;
+            position: relative;
+
+		}
+        /*.main .top .logo{*/
+            /*position: relative;*/
+        /*}*/
+        .main .top .logo img{
+            width: 75px;
+            height: 85px;
+            position: absolute;
+            top:8px;left:5%;
+        }
+        .main .top .logo #guxiang{
+            position: absolute;
+            left:134px;
+            color:#fff;
+            position: absolute;
+            top:30px;left:12%;
+            margin-left: 1px;
+        }
+        .main .top .logo #library{
+            color:#fff;
+            font-size: 5px;
+            position: absolute;
+            top:58px;left:11%;
+        }
+        .main .top .right{
+            width: auto;
+            height: 80px;
+            float: right;
+            /*background: red;*/
+            margin-top: 5px;
+            margin-right: 80px;
+            display: flex;
+            justify-content: space-around;
+            color:#fff;
+        }
+        .main .top .right .logout,.main .top .right .person{
+            width: 90px;
+            height: 100%;
+            position: relative;
+            /*border-left:2px solid #ccc;*/
+            /*border-right:2px solid #ccc;*/
+        }
+         .main .top .right .logout img{
+             width: 25px;
+             position: absolute;
+             top:0;bottom:0;
+             margin:auto;
+             left:0;
+             display: block;
+         }
+         .main .top .right .person img{
+             width: 25px;
+             position: absolute;
+             top:0;bottom:0;
+             margin:auto;
+             left:0;
+          }
+        .main .top .right .logout span{
+             position: absolute;
+             top:32px;
+             left:28px;
+             font-size: 5px;
+        }
+        .main .top .right .person span{
+             display: block;
+             position: absolute;
+             top:32px;
+             left:28px;
+             font-size: 5px;
+           }
+        .main .left{
+            width: 12%;
+            height: 570px;
+            background: #3E4D62;
+            float:left;
+        }
+        .main .left a{
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-bottom:1px solid #24303C;
+            line-height: 50px;
+            text-align: center;
+            font-size: 10px;
+            color:#fff;
+        }
+        iframe{
+            /*float:left;*/
+            width:80%;
+            /*height: 100%;*/
+            height: 500px;
+            padding:10px;
+        }
+        #date{
+            width: auto;
+            height: 20px;
+            color:#fff;
+            font-size: 10px;
+            position: absolute;
+            right:25%;
+            top:40px;
+            bottom:10px;
+        }
+    </style>
+    <body>
+    <div class="main">
+
+    	<div class="top">
+    		<div class="logo">
+                <img src="../static/image/png/logo.png" alt="">
+                <span id="guxiang">古·香</span>
+                <span id="library">L I B R A R Y</span>
+            </div>
+
+            <span id="date"></span>
+            <div class="right">
+                <div class="person"><img src="../static/image/png/person.png" alt="" ><span>欢迎<p style="color:red"></p></span> </div>
+                <div class="logout"><a href="/del_cookie/"><img src="../static/image/png/logout.png" alt=""><span>退出</span></a></div>
+            </div>
+    	</div>
+        <div class="left">
+            <div class="big">
+                <div class="word"><a href="/biginfo/" target="iframe">大类型管理</a></div>
+                <!--<div class="word1">大类型添加</div>-->
+            </div>
+             <div class="tyni">
+                <div class="word"><a href="/tyniinfo/"  target="iframe">小类型管理</a></div>
+            </div>
+            <div class="book">
+                <div class="word"><a href="/bookinfo/"  target="iframe">图书管理</a></div>
+            </div>
+            <div class="book">
+                <div class="word"><a href="/catainfo/"  target="iframe"> 章节管理</a></div>
+            </div>
+            <div class="book">
+                <div class="word"><a href="/flaginfo/"  target="iframe"> 标识符管理</a></div>
+            </div>
+        </div>
+        <iframe src="" frameborder="0" name="iframe"></iframe>
+    </div>
+
+    </body>
+    <script>
+        var now= new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var date = now.getDate();
+        var day = now.getDay();
+        document.getElementById("date").innerHTML = "当前时间："+year+"年"+month+"月"+date+"日  "+now.toLocaleTimeString()
+
+         $.ajax({
+            type:"GET",
+            url:"/get_session/",
+            success:function(re){
+                    document.querySelector("p").innerHTML=re
+            }
+        })
+    </script>
+</html>

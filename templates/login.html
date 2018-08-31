@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+	<head>
+		<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>-->
+		<!--//webfonts-->
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/jquery.validate.min.js"></script>
+	</head>
+	<style>
+
+body{
+	font-family: 'Open Sans', sans-serif;
+	background:url('/static/image/index/form-bg.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+ 	background-position: center;
+ 	background-size: 100% 100%;
+
+}
+.login-form {
+	background: url('/static/image/index/bgf.png') no-repeat 100% 0%;
+	background-size: 100% 100%;
+	width:50%;
+	height:50%;
+	/*margin: 12% auto 4% auto;*/
+ 	padding-bottom:6em;
+}
+	</style>
+	<body>
+			<!--start-login-form-->
+				<div class="login-form">
+					<h1>登录</h1>
+				<form  id="signupForm"  action="/userlogin/" method="post">
+					<input type="text"   id="username" placeholder="用户名" name = "username"required/>
+					<input type="Password"  id="password" placeholder="密码" name="password" required/><br>
+					<input type="checkbox" id ="save"value="week" name="save" style="display:inline-block;width:15px;margin:5px"><p>保存密码一周</p><br>
+					<!--<label for="ma"  id="3">验证码:</label>-->
+					<input id ="ma" name="idcode"placeholder="验证码" autocomplete="off" type="text" style="width: 20%" required/>
+					<img src="/code/" alt="" onclick="this.src=this.src+'?'+Math.random() ">
+			 			<div class="submit">
+							<input type="submit" value="Login" id="login">
+						</div>
+							<span class="forget-pass">
+							<a href="/userreg/">注册</a>
+							</span>
+				</form>
+			</div>
+			<!--//End-login-form-->
+
+				<!-----start-copyright---->
+   					<div class="copy-right">
+						<p> Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a> </p>
+					</div>
+				<!-----//end-copyright---->
+	</body>
+	<script>
+
+	</script>
+</html>
+
+

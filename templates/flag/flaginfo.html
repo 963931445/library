@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+.add{
+        width: 200px;
+        /*background: red;*/
+        /*position: absolute;*/
+        /*left:0;right:0;*/
+        /*margin:auto;*/
+        margin-bottom: 10px;
+        line-height: 50px;
+    }
+     .add img{
+        width: 30px;
+        height:30px;
+    }
+    .add span{
+        margin-left: 5px;
+    }
+</style>
+<body>
+<div class="add"><a href="/flagadd/"><img src="/static/image/png/add.png" alt=""><span>标识添加</span></a></div>
+{% if data %}
+    <table class="table table-striped">
+        <tr>
+            <th>标识id</th>
+             <th>标识名称</th>
+            <th>操作</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <input type="hidden" name="id" value="{{item.id}}">
+                <td name="flagid">{{ item.flagid}}</td>
+                <td name="flagname">{{ item.flagname}}</td>
+                <td>
+                    <a href="/flagedit/?flagid={{item.flagid}}"><img src="../static/image/png/edit.png" alt="" style="width: 20px;"></a>
+                    <a href="/flagdel/?flagid={{item.flagid}}"><img src="../static/image/png/del.png" alt="" style="width: 20px;"></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+没有数据
+{% endif %}
+</body>
+</html>

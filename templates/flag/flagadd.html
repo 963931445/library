@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+    html{
+        position: relative;
+
+    }
+    form{
+        width: 500px;
+        height: auto;
+        position: absolute;
+        left:0;right:0;
+        margin :auto;
+        top:50px;
+
+    }
+    form label{
+        width: 80px;
+        margin:10px 0;
+    }
+    input{
+         margin:10px 0;
+    }
+    input[type=submit]{
+        position: absolute;
+        left:0;right:0;
+        margin :auto;
+    }
+</style>
+<body>
+<form action="/flagadd/" method="post">
+    <label for="flagid">标 识 符id: </label><input type="text" name="flagid" id="flagid"><br>
+    <label for="flagname">标识符名称: </label><input type="text" name="flagname" id="flagname"><br>
+    <input type="submit" name="submit"  class="btn btn-primary">
+</form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+<form action="/catadd/" method="post" enctype="multipart/form-data">
+    书名: <input type="text" name="bookname"><br>
+    章节序号 第<input type="text" name="catid" disabled>章<br>
+    章节名： <input type="text" name="catname" disabled><br>
+    章节内容： <input type="file" name="catainfo" disabled><br>
+    <input type="submit"  class="btn btn-primary">
+</form>
+
+</body>
+<script>
+    $("input[name=bookname]").change(function(){
+        var val = $(this).val()
+        $.ajax({
+            url:"/ajax_bookname/",
+            // dataType:"JSON",
+            data:{
+                "bookname":val,
+            },
+            success: function(msg){
+                if(msg=="ok"){
+                     obj =confirm("确定要在"+val+"里面添加章节?");
+                     if(obj){
+                         $("input[name=catname]").removeAttr("disabled")
+                          $("input[name=catid]").removeAttr("disabled")
+                         $("input[name=catainfo]").removeAttr("disabled")
+                     }
+                }else{
+                         alert("错误")
+                     $("input[name=catname]").attr("disabled","disabled")
+                     $("input[name=catid]").attr("disabled","disabled")
+                    $("input[name=catainfo]").attr("disabled","disabled")
+                     }
+           }
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+    form{
+        width: auto;
+        height:auto;
+    }
+    label{
+        width: 100px;
+        margin:10px 0 ;
+    }
+</style>
+
+<body>
+{% if data %}
+<form action="/catedit/" method="post" >
+    <input type="hidden" name="id" value="{{data.id}}">
+    <label for="">书名:</label> <input type="hidden" name="bookname" value="{{data.bookname}}"><br>
+    <label for="">章节序号:</label> 第<input type="text" name="catid" value="{{data.catid}}">章<br>
+    <label for="">章 节 名：</label ><input type="text" name="catname"  value="{{data.catname}}"><br>
+    <label for="">章节内容：</label>
+    <!--<input type="file" name="catainfo"><br>-->
+    <textarea name="catinfo" id="" cols="80" rows="10" style="max-width: 500px;min-width: 500px;min-height: 300px;max-height: 300px;">{{data.catinfo}}</textarea>
+    <input type="submit"  class="btn btn-primary" style="display: block;margin-left: 50px">
+
+{% else %}
+    没有数据
+{% endif %}
+</form>
+
+</body>
+<script>
+    // $("input[name=bookname]").blur(function(){
+    //     var val = $(this).val()
+    //     $.ajax({
+    //         url:"/ajax_bookname/",
+    //         // dataType:"JSON",
+    //         data:{
+    //             "bookname":val,
+    //         },
+    //         success: function(msg){
+    //             if(msg=="ok"){
+    //                  obj =confirm("确定要在"+val+"里面添加章节?");
+    //                  if(obj){
+    //                      $("input[name=catname]").removeAttr("disabled")
+    //                       $("input[name=catid]").removeAttr("disabled")
+    //                  }else{
+    //                      alert("错误")
+    //                  }
+    //             }
+    //        }
+    //     })
+    // })
+</script>
+</html>
